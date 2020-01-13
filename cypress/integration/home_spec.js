@@ -8,9 +8,7 @@ describe('Home', () => {
         cy.get('[data-testid="input-player-name"]').type('Jogador 1')
         cy.get('[data-testid="input-gravatar-email"]').type('email@test.com')
         cy.get('[data-testid="header-profile-picture"]')
-        // const btn = cy.get('[data-testid="btn-play"]')
         cy.get('[data-testid="btn-play"]').should('not.be.disabled')
-        // btn.click()
     })
 
     it('should disable button if any info is not provided', () => {
