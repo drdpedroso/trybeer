@@ -20,5 +20,9 @@ jobs:
     script: npm test -- --coverage --watchAll=false
 
     - stage: End to end testing
-      install: npm ci
-      script: $(npm bin)/cypress run
+      install:
+        - npm ci
+        - npm install wait-on
+      script:
+        - npm start & wait-on http://localhost:3000
+        - $(npm bin)/cypress run
