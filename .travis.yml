@@ -18,7 +18,6 @@ jobs:
   include:
     - stage: Unit testing
     script: npm test -- --coverage --watchAll=false
-
     - stage: End to end testing
       install:
         - npm ci
