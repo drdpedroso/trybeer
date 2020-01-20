@@ -285,9 +285,9 @@ player: {
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-01-week10-movie-card-library.git`.
+  * `git clone https://github.com/tryber/sd-01-week17-trivia-react-redux-1.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-01-week10-movie-card-library`
+    * `cd sd-01-week17-trivia-react-redux-1`
 
 2. Instale as dependências, inicialize o projeto e rode os testes
   * Instale as dependências:
