@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import '../css/Configurations.css';
 
 class Configurations extends Component {
-  creatSelect(nameLabel, subs1, subs2, subs3) {
+  static creatSelect(nameLabel, subs1, subs2, subs3, id) {
     return (
-      <label>
+      <label htmlFor={id}>
         {nameLabel}
-        <select name={nameLabel}>
+        <select name={nameLabel} id={id}>
           <option value={`${nameLabel}-1`}>{subs1}</option>
           <option value={`${nameLabel}-1`} selected>
             {subs2}
@@ -21,9 +21,9 @@ class Configurations extends Component {
       <div className="container">
         {/* {this.creatSelect('Tipo', 'valor-1', 'valor-2', 'valor-3')} */}
         <h2>Configurações</h2>
-        {this.creatSelect('Categoria', 'Games', 'Filmes', 'Séries')}
-        {this.creatSelect('Dificuldade', 'Moleza', 'EitaPorra', 'Fudeu')}
-        {this.creatSelect('Tipo', 'valor-1', 'valor-2', 'valor-3')}
+        {Configurations.creatSelect('Categoria', 'Games', 'Filmes', 'Séries', 'select-1')}
+        {Configurations.creatSelect('Dificuldade', 'Moleza', 'EitaPorra', 'Fudeu', 'select-2')}
+        {Configurations.creatSelect('Tipo', 'valor-1', 'valor-2', 'valor-3', 'select-3')}
       </div>
     );
   }
