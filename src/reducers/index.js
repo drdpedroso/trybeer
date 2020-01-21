@@ -1,5 +1,5 @@
-import {combineReducers} from 'react-redux';
-import loadQuestion from './loadQuestion';
+// import {combineReducers} from 'react-redux';
+// import loadQuestion from './loadQuestion';
 
-const rootReducers = combineReducers({loadQuestion});
-export default rootReducers;
+// const rootReducers = combineReducers({loadQuestion});
+// // export default rootReducers;

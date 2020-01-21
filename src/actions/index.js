@@ -1,6 +1,7 @@
-const loadQuestionSucess = (questions) => {
-  return {
-    type: 'LOADED_QUESTIONS',
-    questions,
-  };
-};
+// const loadQuestionSucess = (questions) => {
+//   return {
+//     type: 'LOADED_QUESTIONS',
+//     questions,
+//   };
+// };
+// /

@@ -1,10 +1,19 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
-// import configurationIcon from '../images/126472.png';
 import '../css/home.css';
 import getTokenTriviaAPI from '../service/APIService';
 
 class Home extends React.Component {
+  static sendPlayerToLocalStorage(name, gravatarEmail) {
+    const player = {
+      name,
+      assertions: '',
+      score: '',
+      gravatarEmail,
+    };
+    localStorage.setItem('player', JSON.stringify(player));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,20 +23,11 @@ class Home extends React.Component {
     };
   }
 
-  sendPlayerToLocalStorage(name, gravatarEmail) {
-    const player = {
-      name,
-      assertions: '',
-      score: '',
-      gravatarEmail,
-    };
-    localStorage.setItem('player', JSON.stringify(player));
-  }
   startGame() {
     const { gravatarEmail, name } = this.state;
     if (gravatarEmail !== '' && name !== '') {
       getTokenTriviaAPI();
-      this.sendPlayerToLocalStorage(name, gravatarEmail);
+      Home.sendPlayerToLocalStorage(name, gravatarEmail);
       return this.setState({
         shouldRedirect: true,
       });
