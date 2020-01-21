@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './trivia.png';
 import './App.css';
 import getTokenTriviaAPI from './service/APIService';
+import Configurations from './Configurations';
 
 export default function App() {
   getTokenTriviaAPI();
@@ -10,7 +11,7 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>ijbuhbghgb</h1>
+        <Configurations />
       </header>
     </div>
   );

@@ -1,0 +1,21 @@
+.container {
+  background: #FFFFFF;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  height: 474px;
+  text-align: center;
+  width: 792px;
+}
+
+.span-container { 
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+select {
+  background: #C4C4C4;
+  height: 50px;
+  width: 700px;
+  margin: 2em;
+}
