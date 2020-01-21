@@ -23,29 +23,32 @@ class Home extends React.Component {
       return <Redirect to="/game" />;
     }
     return (
-      <div>
+      <main>
         <Link to="/configurations">
           <button
             type="button"
+            className="button-config"
             data-testid="config-button"
             // style= {{background: URL(configurationIcon)}}
           >
             Configurações
           </button>
         </Link>
-        <p className="inputs-text">Email do Gravatar:</p>
-        <input type="text" data-testid="input-gravatar-email" />
-        <p className="inputs-text">Nome do jogador:</p>
-        <input type="text" data-testid="input-player-name" />
-        <button
-          type="button"
-          className="button-play"
-          onClick={() => this.startGame()}
-          data-testid="btn-play"
-        >
-          JOGAR!
-        </button>
-      </div>
+        <div>
+          <p className="inputs-text">Email do Gravatar:</p>
+          <input type="text" data-testid="input-gravatar-email" />
+          <p className="inputs-text">Nome do jogador:</p>
+          <input type="text" data-testid="input-player-name" />
+          <button
+            type="button"
+            className="button-play"
+            onClick={() => this.startGame()}
+            data-testid="btn-play"
+          >
+            JOGAR!
+          </button>
+        </div>
+      </main>
     );
   }
 }
