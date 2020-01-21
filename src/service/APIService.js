@@ -1,4 +1,4 @@
-//const endPointoken = 'https://opentdb.com/api_token.php?command=request';
+// const endPointoken = 'https://opentdb.com/api_token.php?command=request';
 const edgeTokenToLocalStorage = (key, value) =>
   localStorage.setItem(key, value);
 
