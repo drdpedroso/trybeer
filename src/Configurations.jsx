@@ -5,7 +5,7 @@ class Configurations extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Configurações</h1>
+        <h2>Configurações</h2>
         <label>
           Categoria
           <select name="Categoria">

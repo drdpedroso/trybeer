@@ -6,11 +6,7 @@
   height: 474px;
   text-align: center;
   width: 792px;
-}
-
-.span-container { 
-  margin-top: 2em;
-  margin-bottom: 2em;
+  padding: 1em;
 }
 
 select {
