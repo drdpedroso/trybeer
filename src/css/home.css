@@ -1,0 +1,40 @@
+main {
+  height: 100%;
+  width: 100%;
+}
+
+.button-config {
+  background: #86d660;
+  margin-left: 90%;
+}
+
+.button-play {
+  background: #86d660;
+  font-size: 2em;
+  height: 83px;
+  margin-top: 1em;
+  width: 444px;
+}
+
+div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs-class {
+  background: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  height: 76px;
+  width: 444px;
+}
+
+.inputsText {
+  font-size: 40px;
+  font-style: normal;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  width: 325px;
+}

@@ -1,17 +1,19 @@
 import React from 'react';
-import logo from './trivia.png';
-import './App.css';
-import getTokenTriviaAPI from './service/APIService';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// import logo from './trivia.png';
+// import './App.css';
+import Home from './components/Home';
 
 export default function App() {
-  getTokenTriviaAPI();
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>ijbuhbghgb</h1>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        {/* <Route path="/configurations" component={Configurations}></Route> */}
+        {/* <Route path="/game" component={Game}></Route> */}
+        {/* <Route></Route> feedbacks */}
+        {/* <Route></Route> ranking */}
+      </Switch>
+    </BrowserRouter>
   );
 }
