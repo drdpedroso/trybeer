@@ -18,6 +18,33 @@ class Home extends React.Component {
       shouldRedirect: true,
     });
   }
+
+  generateInputs() {
+    return (
+      <div>
+        <p className="inputs-text">Email do Gravatar:</p>
+        <input
+          className="inputs-class"
+          type="text"
+          data-testid="input-gravatar-email"
+        />
+        <p className="inputs-text">Nome do jogador:</p>
+        <input
+          className="inputs-class"
+          type="text"
+          data-testid="input-player-name"
+        />
+        <button
+          type="button"
+          className="button-play"
+          onClick={() => this.startGame()}
+          data-testid="btn-play"
+        >
+          JOGAR!
+        </button>
+      </div>
+    );
+  }
   render() {
     if (this.state.shouldRedirect) {
       return <Redirect to="/game" />;
@@ -33,28 +60,7 @@ class Home extends React.Component {
             Configurações
           </button>
         </Link>
-        <div>
-          <p className="inputs-text">Email do Gravatar:</p>
-          <input
-            className="inputs-class"
-            type="text"
-            data-testid="input-gravatar-email"
-          />
-          <p className="inputs-text">Nome do jogador:</p>
-          <input
-            className="inputs-class"
-            type="text"
-            data-testid="input-player-name"
-          />
-          <button
-            type="button"
-            className="button-play"
-            onClick={() => this.startGame()}
-            data-testid="btn-play"
-          >
-            JOGAR!
-          </button>
-        </div>
+        <div>{this.generateInputs()}</div>
       </main>
     );
   }
