@@ -1,0 +1,17 @@
+.container {
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  height: 474px;
+  padding: 1em;
+  text-align: center;
+  width: 792px;
+}
+
+select {
+  background: whitesmoke;
+  height: 50px;
+  margin: 2em;
+  width: 710px;
+}

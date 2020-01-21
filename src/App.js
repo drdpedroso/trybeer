@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import logo from './trivia.png';
 // import './App.css';
 import Home from './components/Home';
+// import Configurations from "./components/Configurations";
 
 export default function App() {
   return (
