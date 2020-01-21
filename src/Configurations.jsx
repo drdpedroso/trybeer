@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import "./Configurations.css"
+import './Configurations.css';
 
 class Configurations extends Component {
   render() {
     return (
       <div className="container">
-        <h1 >Configurações</h1>
+        <h1>Configurações</h1>
         <label>
           Categoria
           <select name="Categoria">
