@@ -29,16 +29,23 @@ class Home extends React.Component {
             type="button"
             className="button-config"
             data-testid="config-button"
-            // style= {{background: URL(configurationIcon)}}
           >
             Configurações
           </button>
         </Link>
         <div>
           <p className="inputs-text">Email do Gravatar:</p>
-          <input type="text" data-testid="input-gravatar-email" />
+          <input
+            className="inputs-class"
+            type="text"
+            data-testid="input-gravatar-email"
+          />
           <p className="inputs-text">Nome do jogador:</p>
-          <input type="text" data-testid="input-player-name" />
+          <input
+            className="inputs-class"
+            type="text"
+            data-testid="input-player-name"
+          />
           <button
             type="button"
             className="button-play"

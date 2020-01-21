@@ -8,7 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/" component={Home} />
         {/* <Route path="/configurations" component={Configurations}></Route> */}
         {/* <Route path="/game" component={Game}></Route> */}
         {/* <Route></Route> feedbacks */}
