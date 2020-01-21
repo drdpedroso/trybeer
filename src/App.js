@@ -5,6 +5,8 @@ import getTokenTriviaAPI  from './service/APIService';
 
 export default function App() {
   getTokenTriviaAPI()
+
+  
   return (
     <div className="App">
       <header className="App-header">
