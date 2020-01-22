@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto de Trivia!
+# Boas vindas ao repositório do projeto de Receitas!
 
 Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
@@ -6,24 +6,21 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 ## O que deverá ser desenvolvido
 
-Você deverá desenvolver um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão americano rs)_ utilizando _React e Redux_.
+Você irá desenvolver um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
 
-O app começa com uma tela onde a pessoa que joga coloca seu nome e seu e-mail. O e-mail será usado para buscar a foto associada no site [Gravatar](https://pt.gravatar.com/) (se houver).
+Nela será possivel ver, buscar, filtrar, favoritar e acompanhar o processo de preparação de receitas e drinks!
 
-Logo após, ela é redirecionada para o jogo onde deve escolher uma das respostas disponíveis para cada uma das perguntas. A resposta deve ser marcada antes de o contador de tempo chegar a zero, caso contrário a resposta deve ser considerada como errada.
+A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
 
-Cada acerto dá à pessoa que joga pontos que deverão ser computados num placar no header da aplicação.
-
-Após 5 perguntas respondidas, a pessoa que joga é redirecionada para uma tela de score, onde o texto mostrado vai depender do número de acertos.
-
-No final de cada jogo, a pessoa que joga pode acessar o ranking com as melhores pontuações.
-
-A pessoa que joga pode configurar algumas opções para o jogo em uma tela de configurações acessível a partir do header do app.
-
+O layout tem como foco dispositivos móveis, então todos os protótipos vão estar desenvolvidos em telas menores.
 
 Você pode acessar um protótipo no link abaixo:
 
-https://www.figma.com/file/MxuXDNVbiZb69kM9NI0jhZ/Trivia-project?node-id=0%3A1
+https://www.figma.com/file/XfGoCuEf4U9ZSipFnZs3u7/App-Receitas?node-id=0%3A1
+
+Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI, só respeito os atributos `data-testid`, eles serão usados na correção do exercicio.
+
+Você pode ler mais sobre atributos para testes [nesse link](https://www.eduardopedroso.com.br/?p=494) 
 
 #### ⚠️ Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI, só respeite os atributos `data-testid`, eles serão usados na correção do exercício.
 
@@ -45,116 +42,164 @@ Os testes te darão uma mensagem de erro caso não estejam passando (seja qual f
 
 #### Além dos testes automatizados, você também deve **escrever testes unitários que devem cobrir pelo menos 90% do projeto**. Na [documentação do Jest CLI](https://jestjs.io/docs/en/cli) é possível ver como essa cobertura é coletada.
 
-### Trivia API
+## APIs
 
-A [API do Trivia](https://opentdb.com/api_config.php) é bem simples. Temos 2 endpoints que vamos precisar utilizar para esse exercício.
+### TheMealDB API 
 
-* **Pegar o token de sessão da pessoa que está jogando**
-* **Pegar perguntas e respostas**
+O [TheMealDB](https://www.themealdb.com/) é um banco de dados aberto, mantido pela comunidade, com receitas e ingredientes de todo o mundo.
 
-Primeiro, é necessário fazer um GET request para:
+Os end-points são bastante ricos, você pode [vê-los aqui](https://www.themealdb.com/api.php)
 
-```
-https://opentdb.com/api_token.php?command=request
-```
-
-Esse endpoint te retornará o token que vai ser utilizado nas requisições seguintes. Esse token expira em 6 horas e te retornará um `response_code: 3` caso esteja expirado.
-
-```
+O modelo de resposta para uma `meal` é o seguinte: 
+```json
 {
-   "response_code":0,
-   "response_message":"Token Generated Successfully!",
-   "token":"f00cb469ce38726ee00a7c6836761b0a4fb808181a125dcde6d50a9f3c9127b6"
-}
-```
-
-Paga pegar as perguntas, você realizar um GET request para o seguinte endpoint:
-
-```
-https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=${seu-token-aqui}
-// Recomendação
-https://opentdb.com/api.php?amount=5&token=${seu-token-aqui}
-```
-
-Recomendamos pedir 5 perguntas de uma vez e controlar a disposição delas no código.
-
-Essa API te retorna as perguntas no seguinte formato:
-
-```
-// tipo múltipla escolha
-{
-   "response_code":0,
-   "results":[
+   "meals":[
       {
-         "category":"Entertainment: Video Games",
-         "type":"multiple",
-         "difficulty":"easy",
-         "question":"What is the first weapon you acquire in Half-Life?",
-         "correct_answer":"A crowbar",
-         "incorrect_answers":[
-            "A pistol",
-            "The H.E.V suit",
-            "Your fists"
-         ]
+         "idMeal":"52882",
+         "strMeal":"Three Fish Pie",
+         "strDrinkAlternate":null,
+         "strCategory":"Seafood",
+         "strArea":"British",
+         "strInstructions":"Preheat the oven to 200C\/400F\/Gas 6 (180C fan).\r\nPut the potatoes into a saucepan of cold salted water. Bring up to the boil and simmer until completely tender. Drain well and then mash with the butter and milk. Add pepper and taste to check the seasoning. Add salt and more pepper if necessary.\r\nFor the fish filling, melt the butter in a saucepan, add the leeks and stir over the heat. Cover with a lid and simmer gently for 10 minutes, or until soft. Measure the flour into a small bowl. Add the wine and whisk together until smooth.\r\nAdd the milk to the leeks, bring to the boil and then add the wine mixture. Stir briskly until thickened. Season and add the parsley and fish. Stir over the heat for two minutes, then spoon into an ovenproof casserole. Scatter over the eggs. Allow to cool until firm.\r\nSpoon the mashed potatoes over the fish mixture and mark with a fork. Sprinkle with cheese.\r\nBake for 30-40 minutes, or until lightly golden-brown on top and bubbling around the edges.",
+         "strMealThumb":"https:\/\/www.themealdb.com\/images\/media\/meals\/spswqs1511558697.jpg",
+         "strTags":"Fish,Seafood,Dairy,Pie",
+         "strYoutube":"https:\/\/www.youtube.com\/watch?v=Ds1Jb8H5Sg8",
+         "strIngredient1":"Potatoes",
+         "strIngredient2":"Butter",
+         "strIngredient3":"Milk",
+         "strIngredient4":"Gruy\u00e8re",
+         "strIngredient5":"Butter",
+         "strIngredient6":"Leek",
+         "strIngredient7":"Plain Flour",
+         "strIngredient8":"White Wine",
+         "strIngredient9":"Milk",
+         "strIngredient10":"Parsley",
+         "strIngredient11":"Salmon",
+         "strIngredient12":"Haddock",
+         "strIngredient13":"Smoked Haddock",
+         "strIngredient14":"Eggs",
+         "strIngredient15":"",
+         "strIngredient16":"",
+         "strIngredient17":"",
+         "strIngredient18":"",
+         "strIngredient19":"",
+         "strIngredient20":"",
+         "strMeasure1":"1kg",
+         "strMeasure2":"Knob",
+         "strMeasure3":"Dash",
+         "strMeasure4":"50g",
+         "strMeasure5":"75g",
+         "strMeasure6":"2 sliced",
+         "strMeasure7":"75g",
+         "strMeasure8":"150ml",
+         "strMeasure9":"568ml",
+         "strMeasure10":"2 tbs chopped",
+         "strMeasure11":"250g",
+         "strMeasure12":"250g",
+         "strMeasure13":"250g",
+         "strMeasure14":"6",
+         "strMeasure15":"",
+         "strMeasure16":"",
+         "strMeasure17":"",
+         "strMeasure18":"",
+         "strMeasure19":"",
+         "strMeasure20":"",
+         "strSource":"https:\/\/www.bbc.co.uk\/food\/recipes\/three_fish_pie_58875",
+         "dateModified":null
       }
    ]
 }
 ```
 
+Os ingredientes seguem uma ordem lógica onde o nome dele (`strIngredient1`) e a quantidade (`strMeasure1`) tem o mesmo número no final (1, nesse caso).
+
+É possivel listar todas as `categorias`, `áreas` e `ingredientes`:
+
 ```
-// tipo booleana
+categorias: https://www.themealdb.com/api/json/v1/1/list.php?c=list
+areas: https://www.themealdb.com/api/json/v1/1/list.php?a=list
+ingredientes: https://www.themealdb.com/api/json/v1/1/list.php?i=list
+```
+
+As fotos dos ingredientes veem de um end-point padronizado com a seguinte lógica:
+
+```
+https://www.themealdb.com/images/ingredients/{nome-do-ingrediente}.png
+// exemplo com "lime
+https://www.themealdb.com/images/ingredients/Lime.png
+```
+
+### The CockTailDB API
+
+Bem similar (inclusive mantida pela mesma entidade) a TheMealDB API, só que focado em bebidas.
+
+Os end-points tambem são bastante ricos, você pode [vê-los aqui](https://www.thecocktaildb.com/api.php)
+
+As respostas seguem a mesma estrutura, com algumas particularidade relativas as bebidas (como ser ou não alcoolica, por exemplo)
+
+```json
 {
-   "response_code":0,
-   "results":[
+   "drinks":[
       {
-         "category":"Entertainment: Video Games",
-         "type":"boolean",
-         "difficulty":"hard",
-         "question":"TF2: Sentry rocket damage falloff is calculated based on the distance between the sentry and the enemy, not the engineer and the enemy",
-         "correct_answer":"False",
-         "incorrect_answers":[
-            "True"
-         ]
+         "idDrink":"17256",
+         "strDrink":"Martinez 2",
+         "strDrinkAlternate":null,
+         "strDrinkES":null,
+         "strDrinkDE":null,
+         "strDrinkFR":null,
+         "strDrinkZH-HANS":null,
+         "strDrinkZH-HANT":null,
+         "strTags":null,
+         "strVideo":null,
+         "strCategory":"Cocktail",
+         "strIBA":null,
+         "strAlcoholic":"Alcoholic",
+         "strGlass":"Cocktail glass",
+         "strInstructions":"Add all ingredients to a mixing glass and fill with ice.\r\n\r\nStir until chilled, and strain into a chilled coupe glass.",
+         "strInstructionsES":null,
+         "strInstructionsDE":"Alle Zutaten in ein Mischglas geben und mit Eis f\u00fcllen. Bis zum Abk\u00fchlen umr\u00fchren und in ein gek\u00fchltes Coup\u00e9glas abseihen.",
+         "strInstructionsFR":null,
+         "strInstructionsZH-HANS":null,
+         "strInstructionsZH-HANT":null,
+         "strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/fs6kiq1513708455.jpg",
+         "strIngredient1":"Gin",
+         "strIngredient2":"Sweet Vermouth",
+         "strIngredient3":"Maraschino Liqueur",
+         "strIngredient4":"Angostura Bitters",
+         "strIngredient5":null,
+         "strIngredient6":null,
+         "strIngredient7":null,
+         "strIngredient8":null,
+         "strIngredient9":null,
+         "strIngredient10":null,
+         "strIngredient11":null,
+         "strIngredient12":null,
+         "strIngredient13":null,
+         "strIngredient14":null,
+         "strIngredient15":null,
+         "strMeasure1":"1 1\/2 oz",
+         "strMeasure2":"1 1\/2 oz",
+         "strMeasure3":"1 tsp",
+         "strMeasure4":"2 dashes",
+         "strMeasure5":null,
+         "strMeasure6":null,
+         "strMeasure7":null,
+         "strMeasure8":null,
+         "strMeasure9":null,
+         "strMeasure10":null,
+         "strMeasure11":null,
+         "strMeasure12":null,
+         "strMeasure13":null,
+         "strMeasure14":null,
+         "strMeasure15":null,
+         "strCreativeCommonsConfirmed":"No",
+         "dateModified":"2017-12-19 18:34:15"
       }
    ]
 }
-```
+``` 
 
-Caso o token seja inválido, essa será a resposta da API:
-
-```
-{
-   "response_code":3,
-   "results":[]
-}
-```
-
----
-
-### Gravatar
-
-Na tela de **Inicio**, a pessoa que joga pode colocar um e-mail que deve fazer uma consulta a API do [Gravatar](https://br.gravatar.com/site/implement/images/).
-
-A Implementação é feita baseada no e-mail. Esse email deve ser transformado em uma hash `MD5` (https://br.gravatar.com/site/implement/hash/),
-recomendamos utilizar o [CryptoJs](https://github.com/brix/crypto-js).
-
-Após a geração da hash, basta adicionar o valor gerado no final da URL:
-
-```
-https://www.gravatar.com/avatar/HASH-GERADA
-// Exemplo
-https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50
-// Exemplo
-<img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
-```
-
-Caso o e-mail não tenha uma foto vinculada ao Gravatar, exiba a imagem `default`:
-
-```
-https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3
-```
-
-Lembre-se de manter o `data-testid` correto.
+Os ingredientes seguem uma ordem lógica onde o nome dele (`strIngredient1`) e a quantidade (`strMeasure1`) tem o mesmo número no final (1, nesse caso).
 
 ---
 
@@ -162,91 +207,230 @@ Lembre-se de manter o `data-testid` correto.
 
 ⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate**, e tiver a **cobertura de testes unitários mínima de 90%**.
 
-Nesse projeto, a pessoa que joga deve conseguir completar o jogo e conseguir ver seu placar depois de responder todas as 5 perguntas, além de acessar a tela de configurações e de ranking.
+Nesse projeto, a pessoa que estive utilizando o app pode procurar uma receita especifica, explorar receitas baseado em diferentes critérios, favoritar e fazer as receitas entre outras funcionalidades.
 
-Lembrem-se de utilizar os conhecimentos adquiridos ao longo dos últimos projetos nas ferramentas do React como o Router, Link, Redux e testes para ajudá-los a completar os requisitos.
+As telas sofrem variações dependendo do tipo da receita (se é comida ou bebida, no caso). 
 
-1. Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-#### Tela de início:
+### Header
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-2. A pessoa que joga deve conseguir escrever seu nome no input de texto;
+   - Deve apresentar um icone para a tela de perfil e um para a busca (caso o protótipo peça).
+   
+   - Ao clickar no botão de perfil, a rota deve mudar para a tela de perfil.
+   
+   - Ao clickar no botão de busca, a barra de busca deve aparecer.
+   
+### Barra de busca - Header
 
-3. A pessoa que joga deve conseguir escrever seu email no input de email;
+- A barra de busca deve aparecer quando o usuario clickar no icone de lupa no header. O mesmo serve para esconde-la.
 
-4. O Botão no canto superior direito leva para a tela de configurações;
+- A busca deve ocorrer 600 milisegundos após a última iteração com o input. (Pesquise por `debounce`)
 
-5. Após clicar no botão "Jogar", a pessoa deve ser redirecionada para a tela do jogo;
+- A busca deve ocorrer na API de comidas caso a pessoa esteja na página de comidas e na de bebidas caso esteja na de bebidas.
 
-6. Ao clicar no botão "Jogar", uma requisição para a API do Trivia deve ser feita para pegar o token de jogador;
+- Caso apenas uma receita seja encontrada, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL. Exemplo: `receitasbr.com/receita/{id-da-receita}`
 
-7. O token deve ser armazenado na aplicação e enviado em todas as requisições seguintes.
+- Caso mais de uma receita seja encontrada, mostrar as receitas em cards da mesma maneira que a tela principal de receitas.
 
-#### Tela do jogo:
+- Caso nenhuma receita seja encontrada, uma mensagem deve dizer isso para o usuario. 
+   
+### Menu inferior
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-8. O header deve conter a imagem de perfil vinda do Gravatar, o nome da pessoa (digitado na tela de início) e o placar zerado;
+- Deve apresentar 3 icones, um para comidas, outro para bebidas e outro para exploração.
 
-9. A pergunta e suas alternativas de resposta devem ser recebidas da API do Trivia;
+- Ao clickar no icone de comidas, a pessoa deve ser redirecionada para uma lista de comidas.
 
-10. A categoria da pergunta e seu texto devem ser mostradas para a pessoa que está jogando. Essas informações devem vir dos campos category e question, respectivamente;
+- Ao clickar no icone de bebidas, a pessoa deve ser redirecionada para uma lista de cocktails.
 
-11. As alternativas devem ser mostradas em ordem aleatória, misturando as incorretas com a correta;
+- Ao clickar no icone de exploração, a rota deve mudar para a tela de exploração. 
 
-12. Só deve ser possível escolher uma resposta correta por pergunta;
+- Este menu deve estar oculto dependendo da tela do protótipo.
 
-13. Para perguntas com type:"boolean", mostrar somente 2 campos (um para cada resposta possível);
+### Tela de login:
 
-14. Para perguntas com type:"multiple", mostrar a quantidade necessária de campos (um para cada resposta possível);
+   - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-15. Ao clicar em uma resposta, a resposta correta deve ficar verde e as incorretas, vermelhas;
+   - A pessoa deve conseguir escrever seu email no input de email;
+   
+   - A pessoa deve conseguir escrever sua senha no input de senha;
+   
+   - O formulário só fica válido após um email válido e uma senha de mais de 6 caracteres serem preenchidos.
+   
+   - Caso o e-mail esteja inválido, mostrar mensagem "O e-mail digitado é inválido"; 
+   
+   - Caso o formulário esteja inválido, o botão de submeter deve estar desativado. Caso contrário, deve estar ativado.
+   
+   - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelo prefixo `meals-{token}` e `cocktails-{token}` (o token de teste é sempre "1")
+   
+   - Após a submissão, o e-mail do usuário deve ser salvo em `localStorage` no formato `user: {email: email-do-usuario}`
 
-16. Ao clicar na resposta correta, pontos devem ser somados no placar da pessoa que está jogando;
+### Tela principal de Receitas:
 
-17. A pessoa que joga tem 30 segundos para responder cada pergunta. Um temporizador deve aparecer na tela da pessoa, começando de 30 segundos e indo de forma decrescente até o zero;
+   - Todos os elementos devem respeitar os atributos descritos no protótipo;
+   
+   - Devem ser carregadas 12 receitas aleatórias, uma em cada card.
+   
+   - A pessoa deve conseguir filtrar por categoria utilizando botões. Cada um com o atributo prefixado: `data-testid="filter-category-btn-{nome-da-categoria}"`
+   
+   - Ao clickar no filtro de categoria, todas as receitas devem mudar para os dados filtrados da API. Um dos botões deve trazer todos os dados sem filtros. Esses campos virão da API que lista categorias `https://www.themealdb.com/api/json/v1/1/list.php?c=list`.
+   
+   - Mostrar apenas as 5 primeiras categorias retornadas da API.
+   
+   - No filtro de categorias deve existir a opção de filtrar por Todas as categorias.
+   
+   - As receitas que serão carregadas dependem de qual icone a pessoa clickou: comidas acessa a API de comidas e bedidas acessa a API de bebidas.
+   
+   - O titulo da página mostrado vai depender tambem de qual icone a pessoa clickou;
+   
+   - Cada receita que voltar da API deve virar um card dentro de uma Grid.
+   
+   - O Card de receita deve conter uma foto (`strMealThumb` ou `strDrinkThumb`), o nome (`strMeal` ou `strDrink`) e a categoria da receita (`strCategory`).
+   
+   - Ao clickar no card, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL. Exemplo: `receitasbr.com/receita/{id-da-receita}`
+   
+   - O Header e o menu inferior devem estar presentes.
+   
+### Tela de detalhes de uma receita:
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-18. A fórmula para cálculo dos pontos por pergunta é: `10 + (timer * dificuldade)`, onde timer é o tempo restante no contador de tempo e dificuldade é `hard: 3, medium: 2, easy: 1`, dependendo da pergunta. Exemplo: Se no momento da resposta correta o timer estiver contando 17 segundos, e a dificuldade da pergunta é 2 (média), a pontuação deve ser: `10 + (17 * 2) = 44`;
+- Uma request para a API deve ser feita passando o `id` da receita que deve estar disponivel nos parametros da URL.
 
-19. Caso a pergunta não seja respondida a tempo, a resposta é considerada como errada;
+- Essa tela deve contar uma imagem da receita, o titulo, a categoria (ou se é ou não alcoolico), uma lista de ingredientes seguidos pelas quantidades
+instruções, um video do youtube "embedado" e recomendações.
 
-20. Respostas incorretas não somam pontos ao placar;
+- As recomendações para receitas de comida deverão ser bebidas e vice versa. Dica: Explore os ingredientes.
 
-21. Após a resposta ser dada, o botão "Próxima" deve aparecer. Ao clicar nesse botão, a próxima pergunta deve aparecer na tela;
+- Deverão ser mostrados 6 cards de recomendação, onde apenas 2 são mostrados e o scroll é horizontal, similar a um `carousel`; 
 
-22. Após responder 5 perguntas, a pessoa que está jogando deve ser redirecionada para a tela de feedback;
+- Um botão de "Iniciar Receita" deve ficar fixo na parte de baixo da tela o tempo todo.
 
-23. Caso a API retorne um response_code: 3 (token expirado), a pessoa que está jogando deve ser redirecionada para a tela de início, sem nenhuma informação prévia salva.
+- Caso a receita ja tenha sido feita, o botão deve sumir;
 
-#### Tela de feedback:
+- Caso a receita tenha sido iniciada mas não finalizada, o texto do botão deve ser "Continuar receita";  
 
-24. Deve-se mostrar o placar no header junto com o nome da pessoa que está jogando;
+- Quando "Iniciar Receita" for clickado, a rota deve mudar para a tela de realização de receita.
 
-25. A mensagem deve ser "Podia ser melhor..." caso a pessoa que está jogando acerte menos de 3 perguntas;
+- Um botão de compartilhar e um de favoritar a receita devem estar disponiveis.
 
-26. A mensagem deve ser "Mandou bem!" caso a pessoa que está jogando acerte 3 perguntas ou mais;
+- Ao clickar no botão de compartilhar, o link da receita deve ser copiado para o clipboard e uma mensagem avisando que o link foi copiado deve aparecer.
 
-27. O placar da pessoa que está jogando também deve ser mostrado em uma mensagem de feedback;
+- Caso a receita ja esteja favoritada, o icone do coração deve vir preenchido.
 
-28. O número de perguntas que a pessoa que está jogando acertou deve ser mostrado;
+- Caso a receita não esteja favoritada, o icone do coração deve vir despreenchido.
+  
+- Ao clickar no botão de favoritar, o icone do coração deve mudar de seu estado atual, caso esteja preenchido deve mudar para despreenchido e vice versa.
 
-29. Ao clicar no botão "Jogar novamente" a pessoa que está jogando deve ser redirecionada para a tela de início, sem nenhuma informação prévia salva;
+- As receitas favoritas devem ser salvas em `localStorage` no formato: `favoriteRecipes: [{id, category, image}]`
 
-30. Ao clicar no botão "Ver Ranking" a pessoa que está jogando deve ser redirecionada para a tela de ranking.
+### Tela de receita em processo
 
-#### Tela de ranking:
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-31. Deve-se mostrar uma lista com a imagem de perfil vinda do Gravatar, nome e pontuação das pessoas que jogaram em ordem decrescente (da maior pontuação para a menor);
+- Essa tela deve contar uma imagem da receita, o titulo, a categoria (ou se é ou não alcoolico), uma lista de ingredientes seguidos pelas quantidades
+instruções;
 
-32. O ranking deve ser armazenado no navegador através do `localStorage`.
+- A lista de ingredientes deve conter um checkbox para cada um dos items;
 
-#### Tela de configurações:
+- Ao clickar no checkbox de um igrediente, o nome dele deve ser "riscado" da lista.
 
-33. Ao mudar o valor do dropdown categoria, apenas perguntas da categoria selecionada devem aparecer para a pessoa que está jogando. Essa configuração será identificada pela chave category no retorno da API;
+- O estado do progresso deve ser mantido caso a pessoa atualize a pagina ou volte para a mesma receita. 
 
-34. Ao mudar o valor do dropdown dificuldade, apenas perguntas da dificuldade selecionada devem aparecer para a pessoa que está jogando. Essa configuração será identificada pela chave difficulty no retorno da API;
+- A mesma lógica de favoritar e compatilhar da `Tela de detalhes` se aplica aqui.
 
-35. Ao mudar o valor do dropdown tipo, apenas perguntas do tipo selecionado devem aparecer para a pessoa que está jogando. Essa configuração será identificada pela chave type no retorno da API.
+- O botão de finalizar receita só pode estar habilitado quando todos os ingredientes estiverem "checkados".
 
-***Obs: A maneira como a API deve ser estruturada segue o seguinte modelo: https://opentdb.com/api_config.php***
+- Após clickar no botão "Finalizar receita", a rota deve mudar para a página de receitas realizadas.
+
+### Tela de receitas realizadas
+
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela deve conter cards horizontais, um para cada receita feita;
+
+- Caso a receita do card seja uma comida: a foto da receita, o nome, a categoria, a area, a data em que a pessoa fez a receita, as 2 primeiras tags retornadas pela API e um botão de compartilhar.
+
+- Caso a receita do card seja uma bebida: a foto da receita, o nome, se é alcoolica, a data em que a pessoa fez a receita e um botão de compartilhar.
+
+- O Botão de compartilhar deve copiar a URL da tela de detalhes daquela receita para o clipboard.
+
+- Devem existir 2 botões que filtram as receitas por comida ou bebida e um terceiro que remove todos os filtros.
+
+- Ao clickar na foto ou no titulo, a rota deve mudar para a tela de detalhes daquela receita; 
+
+### Tela de receitas favorita 
+
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela deve conter cards horizontais, um para cada receita feita;
+
+- Caso a receita do card seja uma comida: a foto da receita, o nome, a categoria, a area, um botão de compartilhar e um de desfavoritar;
+
+- Caso a receita do card seja uma bebida: a foto da receita, o nome, se é alcoolica, um botão de compartilhar e um de desfavoritar;
+
+- O botão de compartilhar deve copiar a URL da tela de detalhes daquela receita para o clipboard.
+
+- O botão de desfavoritar deve remover a receita da lista.
+
+- Devem existir 2 botões que filtram as receitas por comida ou bebida e um terceiro que remove todos os filtros.
+
+- Ao clickar na foto ou no titulo, a rota deve mudar para a tela de detalhes daquela receita;
+
+### Tela de explorar
+
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela deve ter dois botões: um para explorar comidas e o outro para explorar bebidas;
+
+- Ao clickar em um dos botões, a rota deve mudar para a pagina de explorar comidas ou de explorar bebidas.
+
+### Tela de explorar bebidas ou comidas
+
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- Caso na tela de explorar a pessoa tenha clickado em comidas, o titulo deve mostrar "Explora - Comidas". O mesmo para bebidas.
+
+- A tela deve ter três botões: um para explorar por ingrediente, um para explorar por local de origem e um para pegar uma receita aleatória.
+
+- Ao clickar em "Por ingredientes", a rota deve mudar para tela de explorar ingredientes;
+
+- Ao clickar em "Por local de origem", a rota deve mudar para tela de explorar por local de origem;
+
+- Ao clickar em "Me surpreenda", a rota deve mudar para os detalhes de uma receita aleátoria vinda da API;
+
+### Tela de explorar ingredientes
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela deve ter cards que contem: O nome do ingrediente e uma foto.
+
+- Ao clickar no card do ingrediente, a rota deve mudar para tela principal de receitas, mas mostrando apenas as receitas que contem o ingrediente escolhido.
+
+- As receitas mostradas devem representar o tipo escolhido antes na tela de explorar: se é comida ou bebida.
+
+### Tela de explorar por local de origem/area
+
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela segue as mesmas especificações da tela de receitas principal, a única diferença é que os filtros de categoria são substituidos por um dropdown;
+
+- No dropdown devem estar disponiveis todas as áreas retornadas da API, incluindo a opção "Todas", que retorna as receitas sem nenhum filtro; 
+
+### Tela de perfil
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- O e-mail do usuário deve estar visível.
+
+- Essa tela deve conter 3 botões: um de receitas favoritas, um de receitas feitas e um para sair.
+
+- Ao clickar no botão de "Receitas Favoritas", a rota deve mudar para a tela de receitas favoritas;
+
+- Ao clickar no botão de "Receitas Feitas", a rota deve mudar para a tela de receitas feitas;
+
+- Ao clickar no botão de "Sair", o `localStorage` deve ser limpo e a rota deve mudar para a tela de login.
+
+
+***Obs: A maneira como as APIs devem ser estruturadas segue os seguintes modelos: https://www.themealdb.com/api.php e https://www.thecocktaildb.com/api.php***
 
 Além dos requisitos funcionais, a cobertura de testes deve atingir pelo menos **90%**.
 
@@ -285,9 +469,9 @@ player: {
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-01-week17-trivia-react-redux-1.git`.
+  * `git clone git@github.com:tryber/sd-01-week10-movie-card-library.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-01-week17-trivia-react-redux-1`
+    * `cd sd-01-week10-movie-card-library`
 
 2. Instale as dependências, inicialize o projeto e rode os testes
   * Instale as dependências:
@@ -373,3 +557,4 @@ Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um vid
 Os monitores também farão a revisão de todos os projetos, e irão avaliar tanto o seu _Pull Request_, quanto as revisões que você fizer nos _Pull Requests_ dos seus colegas!!!
 
 Use o material que você já viu sobre [Code Review](https://course.betrybe.com/real-life-engineer/code-review/) para te ajudar a revisar os projetos que chegaram para você.
+
