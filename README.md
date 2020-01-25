@@ -272,7 +272,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - Devem ser carregadas 12 receitas aleatórias, uma em cada card.
    
-   - A pessoa deve conseguir filtrar por categoria utilizando botões. Cada um com o atributo prefixado: `data-testid="filter-category-btn-{nome-da-categoria}"`
+   - A pessoa deve conseguir filtrar por categoria utilizando botões. Cada um com o atributo prefixado: `data-testid=${categoryName}-category-filter`
    
    - Ao clickar no filtro de categoria, todas as receitas devem mudar para os dados filtrados da API. Um dos botões deve trazer todos os dados sem filtros. Esses campos virão da API que lista categorias `https://www.themealdb.com/api/json/v1/1/list.php?c=list`.
    
@@ -282,13 +282,16 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - As receitas que serão carregadas dependem de qual icone a pessoa clickou: comidas acessa a API de comidas e bedidas acessa a API de bebidas.
    
-   - O titulo da página mostrado vai depender tambem de qual icone a pessoa clickou;
+   - Se a API utilizada for a de comidas, a URl deve ser `/comidas`, caso seja bebidas `/bebidas`;
+   
+   - O titulo da página mostrado vai depender tambem de qual icone a pessoa clickou; (Comidas ou Bebidas)
    
    - Cada receita que voltar da API deve virar um card dentro de uma Grid.
    
    - O Card de receita deve conter uma foto (`strMealThumb` ou `strDrinkThumb`), o nome (`strMeal` ou `strDrink`) e a categoria da receita (`strCategory`).
    
-   - Ao clickar no card, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL. Exemplo: `receitasbr.com/receita/{id-da-receita}`
+   - Ao clickar no card, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL, além de dizer se a pessoa veio da tela de comidas ou de bebidas.
+    Exemplo: `/receitas/comida/{id-da-receita}`
    
    - O Header e o menu inferior devem estar presentes.
    
