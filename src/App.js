@@ -5,6 +5,7 @@ import {useHistory, useParams} from 'react-router-dom'
 // import logo from './trivia.png';
 // import './App.css';
 import debounce from 'lodash/debounce'
+import copy from 'clipboard-copy'
 
 const Header = (props) => {
     const [show, setShow] = useState(false)
@@ -55,7 +56,7 @@ const Details = () => {
         Object.keys(l).forEach(e => {
             if (e.includes('strIngredient')) {
                 const measure = e.replace('strIngredient', 'strMeasure')
-                if ([e]) {
+                if (l[e]) {
                     arr.push({ingredient: l[e], measure: l[measure]})
                 }
             }
@@ -83,9 +84,13 @@ const Details = () => {
            <img data-testid="recipe-photo" style={{width: '100%', height: 320}} src={recipe.strMealThumb || recipe.strDrinkThumb} />
            <p data-testid="recipe-title">{recipe.strMeal || recipe.strDrink}</p>
            <p>{recipe.strArea} - {recipe.strCategory}</p>
+        <button data-testid="favorite-btn"> Favoritar</button>
+        <button data-testid="share-btn" onClick={() => copy('http://localhost:3000/receitas/comida/52779')}> Compartilhar</button>
         {
             getIngredients().map((i, index) => {
-                return <div><span data-testid={`${index}-ingredient-name`}>{i.ingredient}</span> - <span data-testid={`${index}-ingredient-measure`}>{i.measure}</span></div>
+                return <div>
+                    <span data-testid={`${index}-ingredient-name`}>{i.ingredient}</span> - <span data-testid={`${index}-ingredient-measure`}>{i.measure}</span>
+                </div>
             })
         }
         <div data-testid="instructions">{recipe.instructions}</div>
@@ -170,7 +175,22 @@ const Home = () => {
 }
 
 const Login = () => {
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    return (
+        <div>
+            <input data-testid="email-input"
+                   type="email" onChange={e => setEmail(e.target.value)}/>
+            <input data-testid="password-input"
+                   type="password" onChange={e => setPassword(e.target.value)}/>
+            <button data-testid="login-submit-btn"
+                    disabled={!email || password.length < 6}
+                    onClick={() => {
+                localStorage.setItem('meals-token',  '1')
+                localStorage.setItem('cocktails-token', '1')
+            }}>Login</button>
+        </div>
+    )
 }
 
 export default function App() {

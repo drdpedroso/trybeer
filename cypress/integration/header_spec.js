@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-describe('Main Recipes', () => {
+describe('Header/Search', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/comidas')
     })

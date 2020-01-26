@@ -258,11 +258,9 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - O formulário só fica válido após um email válido e uma senha de mais de 6 caracteres serem preenchidos.
    
-   - Caso o e-mail esteja inválido, mostrar mensagem "O e-mail digitado é inválido"; 
-   
    - Caso o formulário esteja inválido, o botão de submeter deve estar desativado. Caso contrário, deve estar ativado.
    
-   - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelo prefixo `meals-{token}` e `cocktails-{token}` (o token de teste é sempre "1")
+   - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelo prefixo `meals-token` e `cocktails-token` (o token de teste é sempre "1")
    
    - Após a submissão, o e-mail do usuário deve ser salvo em `localStorage` no formato `user: {email: email-do-usuario}`
 
