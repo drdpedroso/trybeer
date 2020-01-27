@@ -193,6 +193,33 @@ const Login = () => {
     )
 }
 
+const DoneRecipes = () => {
+    const recipes = JSON.parse(localStorage.getItem('done-recipes')) || []
+    return (
+        <div>
+            <Header title="Receitas Feitas"/>
+            <button data-testid="filter-by-all-btn">All</button>
+            <button data-testid="filter-by-food-btn">Food</button>
+            <button data-testid="filter-by-drink-btn">Drinks</button>
+            {
+                recipes.map((r, index) => {
+                    return (<div key={r.idMeal || r.idDrink}>
+                    <img data-testid={`${index}-horizontal-image`}
+                         style={{width: 100, height: 320}} src={r.strMealThumb || r.strDrinkThumb} />
+                    <p data-testid={`${index}-horizontal-top-text`}>{r.strCategory}</p>
+                        <p data-testid={`${index}-horizontal-done-date`}>Feita em : {r.doneDate}</p>
+                        <p data-testid={`${index}-horizontal-name`}> {r.strMeal || r.strDrink} </p>
+                        <button data-testid={`${index}-horizontal-share-btn`} onClick={() => {
+                            copy(`http://localhost:3000/receitas/${r.idMeal ? 'comida/' + r.idMeal : 'bebida/' + r.idDrink}`)
+                        }}>Share</button>
+                    </div>)
+                })
+            }
+            <BottomMenu/>
+        </div>
+    )
+}
+
 export default function App() {
     const [state, setState] = React.useState({})
   return (
@@ -209,6 +236,10 @@ export default function App() {
             </Route>
             <Route path="/receitas/:from/:id">
                 <Details setState={setState} state={state}/>
+            </Route>
+
+            <Route path="/receitas-feitas">
+                <DoneRecipes setState={setState} state={state}/>
             </Route>
         </Switch>
     </BrowserRouter>

@@ -33,7 +33,7 @@ describe('Details', () => {
         cy.get('[data-testid="12-ingredient-measure"]').should('not.exist')
         cy.get('[data-testid="video"]')
         cy.get('[data-testid="share-btn"]').click()
-        cy.task('getClipboard').should('contain', 'http://localhost:3000/receitas/comida/52779');
+        cy.task('getClipboard').should('contain', 'http://localhost:3000/receitas/comida/52779')
         cy.get('[data-testid="start-recipe-btn"]')
     })
 

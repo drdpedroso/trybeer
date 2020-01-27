@@ -344,7 +344,7 @@ instruções;
 
 - Após clickar no botão "Finalizar receita", a rota deve mudar para a página de receitas realizadas.
 
-### Tela de receitas realizadas
+### Tela de receitas feitas 
 
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
@@ -358,7 +358,9 @@ instruções;
 
 - Devem existir 2 botões que filtram as receitas por comida ou bebida e um terceiro que remove todos os filtros.
 
-- Ao clickar na foto ou no titulo, a rota deve mudar para a tela de detalhes daquela receita; 
+- Ao clickar na foto ou no titulo, a rota deve mudar para a tela de detalhes daquela receita;
+
+- A rota dessa página deve ser: `/receitas-feitas`
 
 ### Tela de receitas favorita 
 
@@ -441,27 +443,21 @@ Além dos requisitos funcionais, a cobertura de testes deve atingir pelo menos *
 
 Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de correção funcionem corretamente.
 
-**Player**
-
 No `localStorage` do navegador:
-* a chave `player` deve conter a seguinte estrutura:
+* a chave `done-recipes` deve conter a seguinte estrutura:
 ```
-player: {
-    name,
-    assertions,
-    score,
-    gravatarEmail
-}
+[{
+    ...dados-da-receita,
+    doneDate: quando-a-receita-foi-concluida
+}]
 ```
 
-* a chave `ranking` deve conter a seguinte estrutura:
+* a chave `in-proggress` deve conter a seguinte estrutura:
 ```
 [
-    {name: nome-da-pessoa, score: 10, picture: url-da-foto-no-gravatar}
+    id-da-receita
 ]
 ```
-
-* a chave `token` deve conter o valor do token recebido na API do Trivia.
 
 ---
 
