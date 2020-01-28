@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 describe('Done Recipes', () => {
     before(() => {
-        cy.setRecipes()
+        cy.setFavoriteRecipes()
     })
     beforeEach(() => {
-        cy.visit('http://localhost:3000/receitas-feitas')
+        cy.visit('http://localhost:3000/receitas-favoritas')
 
     })
 
@@ -16,7 +16,7 @@ describe('Done Recipes', () => {
 
     const hasTopBarItems = () => {
         cy.get('[data-testid="profile-top-btn"]')
-        cy.get('[data-testid="page-title"]').contains('Receitas Feitas')
+        cy.get('[data-testid="page-title"]').contains('Receitas Favoritas')
         cy.get('[data-testid="search-top-btn"]')
     }
 
@@ -43,5 +43,9 @@ describe('Done Recipes', () => {
         cy.get('[data-testid="0-horizontal-name"]').contains('Chilli prawn linguine')
         cy.get('[data-testid="filter-by-drink-btn"]').click()
         cy.get('[data-testid="0-horizontal-name"]').contains('Margarita')
+        cy.get('[data-testid="filter-by-all-btn"]').click()
+
+        cy.get('[data-testid="0-horizontal-favorite-btn"]').click()
+        cy.get('[data-testid="0-horizontal-name"]').contains('Chilli prawn linguine')
     })
 })

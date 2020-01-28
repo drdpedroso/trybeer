@@ -194,13 +194,29 @@ const Login = () => {
 }
 
 const DoneRecipes = () => {
-    const recipes = JSON.parse(localStorage.getItem('done-recipes')) || []
+    const [recipes, setRecipes] = useState([])
+
+    useEffect(() => {
+        setRecipes(JSON.parse(localStorage.getItem('done-recipes')) || [])
+    }, [])
+
+    const filterBy = (filter) => {
+        const r = JSON.parse(localStorage.getItem('done-recipes')) || []
+        if (filter === 'all') {
+            setRecipes(JSON.parse(localStorage.getItem('done-recipes')) || [])
+        } else if(filter === 'food') {
+            setRecipes(r.filter(i => i.idMeal))
+        } else if (filter === 'drink') {
+            setRecipes(r.filter(i => i.idDrink))
+        }
+    }
+
     return (
         <div>
             <Header title="Receitas Feitas"/>
-            <button data-testid="filter-by-all-btn">All</button>
-            <button data-testid="filter-by-food-btn">Food</button>
-            <button data-testid="filter-by-drink-btn">Drinks</button>
+            <button data-testid="filter-by-all-btn" onClick={() => filterBy('all')}>All</button>
+            <button data-testid="filter-by-food-btn" onClick={() => filterBy('food')}>Food</button>
+            <button data-testid="filter-by-drink-btn" onClick={() => filterBy('drink')}>Drinks</button>
             {
                 recipes.map((r, index) => {
                     return (<div key={r.idMeal || r.idDrink}>
@@ -209,6 +225,59 @@ const DoneRecipes = () => {
                     <p data-testid={`${index}-horizontal-top-text`}>{r.strCategory}</p>
                         <p data-testid={`${index}-horizontal-done-date`}>Feita em : {r.doneDate}</p>
                         <p data-testid={`${index}-horizontal-name`}> {r.strMeal || r.strDrink} </p>
+                        <button data-testid={`${index}-horizontal-share-btn`} onClick={() => {
+                            copy(`http://localhost:3000/receitas/${r.idMeal ? 'comida/' + r.idMeal : 'bebida/' + r.idDrink}`)
+                        }}>Share</button>
+                    </div>)
+                })
+            }
+            <BottomMenu/>
+        </div>
+    )
+}
+
+
+const FavoriteRecipes = () => {
+    const [recipes, setRecipes] = useState([])
+
+    useEffect(() => {
+        setRecipes(JSON.parse(localStorage.getItem('favorite-recipes')) || [])
+    }, [])
+
+    const filterBy = (filter) => {
+        const r = JSON.parse(localStorage.getItem('favorite-recipes')) || []
+        if (filter === 'all') {
+            setRecipes(JSON.parse(localStorage.getItem('favorite-recipes')) || [])
+        } else if(filter === 'food') {
+            setRecipes(r.filter(i => i.idMeal))
+        } else if (filter === 'drink') {
+            setRecipes(r.filter(i => i.idDrink))
+        }
+    }
+
+    const remove = (index) => {
+        const rC = recipes.concat()
+        rC.splice(index, 1)
+        setRecipes(rC)
+    }
+
+    return (
+        <div>
+            <Header title="Receitas Favoritas"/>
+            <button data-testid="filter-by-all-btn" onClick={() => filterBy('all')}>All</button>
+            <button data-testid="filter-by-food-btn" onClick={() => filterBy('food')}>Food</button>
+            <button data-testid="filter-by-drink-btn" onClick={() => filterBy('drink')}>Drinks</button>
+            {
+                recipes.map((r, index) => {
+                    return (<div key={r.idMeal || r.idDrink}>
+                        <img data-testid={`${index}-horizontal-image`}
+                             style={{width: 100, height: 320}} src={r.strMealThumb || r.strDrinkThumb} />
+                        <p data-testid={`${index}-horizontal-top-text`}>{r.strCategory}</p>
+                        <p data-testid={`${index}-horizontal-done-date`}>Feita em : {r.doneDate}</p>
+                        <p data-testid={`${index}-horizontal-name`}> {r.strMeal || r.strDrink} </p>
+                        <button data-testid={`${index}-horizontal-favorite-btn`}
+                                onClick={() => remove(index)}
+                        >Favoritar</button>
                         <button data-testid={`${index}-horizontal-share-btn`} onClick={() => {
                             copy(`http://localhost:3000/receitas/${r.idMeal ? 'comida/' + r.idMeal : 'bebida/' + r.idDrink}`)
                         }}>Share</button>
@@ -240,6 +309,9 @@ export default function App() {
 
             <Route path="/receitas-feitas">
                 <DoneRecipes setState={setState} state={state}/>
+            </Route>
+            <Route path="/receitas-favoritas">
+                <FavoriteRecipes setState={setState} state={state}/>
             </Route>
         </Switch>
     </BrowserRouter>

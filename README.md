@@ -380,6 +380,8 @@ instruções;
 
 - Ao clickar na foto ou no titulo, a rota deve mudar para a tela de detalhes daquela receita;
 
+- A rota dessa página deve ser: `/receitas-favoritas`
+
 ### Tela de explorar
 
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
@@ -443,12 +445,22 @@ Além dos requisitos funcionais, a cobertura de testes deve atingir pelo menos *
 
 Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de correção funcionem corretamente.
 
+O uso de `localStorage` é necessário para que as informações não se percam caso a pessoal atualize a página. 
+O correto é usar os valores para iniciar sua store ou seu context.
+
 No `localStorage` do navegador:
 * a chave `done-recipes` deve conter a seguinte estrutura:
 ```
 [{
     ...dados-da-receita,
     doneDate: quando-a-receita-foi-concluida
+}]
+```
+
+* a chave `favorite-recipes` deve conter a seguinte estrutura:
+```
+[{
+    ...dados-da-receita, 
 }]
 ```
 
