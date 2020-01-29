@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-describe('Explore Ingridients', () => {
+describe('Explore Area', () => {
 
     beforeEach(() => {
-        cy.visit('http://localhost:3000/explorar/comidas/ingredientes')
+        cy.visit('http://localhost:3000/explorar/comidas/area')
     })
 
     const hasBottomNavigation = () => {
@@ -13,7 +13,7 @@ describe('Explore Ingridients', () => {
 
     const hasTopBarItems = () => {
         cy.get('[data-testid="profile-top-btn"]')
-        cy.get('[data-testid="page-title"]').contains('Explorar Ingredientes')
+        cy.get('[data-testid="page-title"]').contains('Explorar Origem')
         cy.get('[data-testid="search-top-btn"]')
     }
 
@@ -21,12 +21,10 @@ describe('Explore Ingridients', () => {
         hasTopBarItems()
         hasBottomNavigation()
         cy.server()
-        cy.route('api/json/v1/1/list.php?i=list').as('api')
-        cy.route('api/json/v1/1/filter.php?i=Salmon').as('list')
+        cy.route('api/json/v1/1/filter.php?a=Canadian').as('api')
+        cy.route('api/json/v1/1/list.php?a=list').as('apiList')
+        cy.wait('@apiList')
+        cy.get('[data-testid="explore-by-area-dropdown"]').select('Canadian')
         cy.wait('@api')
-        cy.get('[data-testid="Salmon-card-img"]')
-        cy.get('[data-testid="Salmon-card-name"]').contains('Salmon')
-        cy.get('[data-testid="Salmon-card-img"]').click()
-        cy.wait('@list')
     })
 })

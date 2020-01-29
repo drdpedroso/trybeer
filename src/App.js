@@ -236,6 +236,95 @@ const DoneRecipes = () => {
     )
 }
 
+const ExploreArea = () => {
+    const [cards, setCards] = React.useState([])
+    const [areas, setAreas] = React.useState([])
+    const [categories, setCategories] = React.useState([{strCategory: 'All', idCategory: 0}])
+    const history = useHistory()
+    const [category, setCategory] = useState(null)
+    useEffect(() => {
+        axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
+            .then(function (response) {
+                setCards(response.data.meals)
+            })
+        axios.get('https://www.themealdb.com/api/json/v1/1/categories.php')
+            .then(function (response) {
+                setCategories(categories.concat(response.data.categories.slice(0,5)))
+            })
+    }, [])
+
+    useEffect(() => {
+        if (category && category !== 'All') {
+            axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+                .then(function (response) {
+                    setCards(response.data.meals)
+                })
+        } else if (category === 'All') {
+            axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
+                .then(function (response) {
+                    setCards(response.data.meals)
+                })
+        }
+    }, [category])
+
+    useEffect(() => {
+        axios.get(`https://www.themealdb.com/api/json/v1/1/list.php?a=list`)
+            .then(function (response) {
+                setAreas(response.data.meals)
+            })
+    }, [])
+
+    const onChangeSearch = (val, searchType) => {
+        if (searchType === 'i') {
+            axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${val}`)
+                .then(function (response) {
+                    setCards(response.data.meals)
+                })
+        } else if (searchType === 'n') {
+            axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${val}`)
+                .then(function (response) {
+                    setCards(response.data.meals)
+                })
+
+        } else if (searchType === 'l') {
+            axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?f=${val}`)
+                .then(function (response) {
+                    setCards(response.data.meals)
+                })
+        }
+    }
+
+    const dbOnChangeSearch = debounce(onChangeSearch, 600)
+
+
+    const onChangeOpt = (e) => {
+        const val = e.target.value
+        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${val}`)
+            .then(function (response) {
+                setCards(response.data.meals)
+            })
+    }
+    return <div>
+        <Header title="Explorar Origem" onChangeSearch={dbOnChangeSearch}/>
+        <select data-testid="explore-by-area-dropdown" onChange={onChangeOpt}>
+            {
+                areas.map(a => {
+                    return <option data-testid={`${a.strArea}-option`} value={a.strArea}>{a.strArea}</option>
+                })
+            }
+        </select>
+        {cards.map((r, index) => {
+            console.log(r.strCategory)
+            return <div key={r.idMeal} onClick={() => history.push(`/receitas/comida/${r.idMeal}`)}>
+                <img data-testid={`${index}-card-img`} src={r.strMealThumb} style={{width: 200, heigh: 200}}/>
+                <p data-testid={`${index}-card-category`}>{r.strCategory}</p>
+                <p data-testid={`${index}-card-name`}>{r.strMeal}</p>
+            </div>
+        })}
+        <BottomMenu/>
+    </div>
+}
+
 
 const ExloreIngri = () => {
     const [cards, setCards] = useState([])
@@ -321,13 +410,6 @@ const FavoriteRecipes = () => {
     )
 }
 
-const ExploreIngredient = () => {
-    return (
-        <div>
-
-        </div>
-    )
-}
 
 export default function App() {
     const [state, setState] = React.useState({})
@@ -355,6 +437,9 @@ export default function App() {
             </Route>
             <Route path="/explorar/comidas/ingredientes">
                 <ExloreIngri setState={setState} state={state}/>
+            </Route>
+            <Route path="/explorar/comidas/area">
+                <ExploreArea setState={setState} state={state}/>
             </Route>
         </Switch>
     </BrowserRouter>
