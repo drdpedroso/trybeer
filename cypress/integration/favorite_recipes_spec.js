@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-describe('Done Recipes', () => {
+describe('Favorite Recipes', () => {
     before(() => {
         cy.setFavoriteRecipes()
     })

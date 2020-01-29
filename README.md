@@ -423,7 +423,9 @@ instruções;
 
 - A tela segue as mesmas especificações da tela de receitas principal, a única diferença é que os filtros de categoria são substituidos por um dropdown;
 
-- No dropdown devem estar disponiveis todas as áreas retornadas da API, incluindo a opção "Todas", que retorna as receitas sem nenhum filtro; 
+- No dropdown devem estar disponiveis todas as áreas retornadas da API, incluindo a opção "Todas", que retorna as receitas sem nenhum filtro;
+
+- A rota deve ser `/explorar/comidas/area` ou `/explorar/bebidas/area` 
 
 ### Tela de perfil
 - Todos os elementos devem respeitar os atributos descritos no protótipo;

@@ -237,6 +237,38 @@ const DoneRecipes = () => {
 }
 
 
+const ExloreIngri = () => {
+    const [cards, setCards] = useState([])
+    useEffect(() => {
+        axios.get('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+            .then(function (response) {
+                setCards(response.data.meals)
+            })
+    }, [])
+
+    const doStuff = () => {
+        axios.get('https://www.themealdb.com/api/json/v1/1/filter.php?i=Salmon')
+            .then(function (response) {
+                // setCards(response.data.meals)
+            })
+    }
+    return (
+        <div>
+            <Header title="Explorar Ingredientes"/>
+            {
+                cards.map((ing, index) => {
+                    return <div>
+                        <img onClick={doStuff} style={{width: 50, height: 60}} data-testid={`${ing.strIngredient}-card-img`} src={`https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`}/>
+                        <p  data-testid={`${ing.strIngredient}-card-name`}> {ing.strIngredient}</p>
+                    </div>
+                })
+            }
+            <BottomMenu/>
+        </div>
+
+    )
+}
+
 const FavoriteRecipes = () => {
     const [recipes, setRecipes] = useState([])
 
@@ -320,6 +352,9 @@ export default function App() {
             </Route>
             <Route path="/receitas-favoritas">
                 <FavoriteRecipes setState={setState} state={state}/>
+            </Route>
+            <Route path="/explorar/comidas/ingredientes">
+                <ExloreIngri setState={setState} state={state}/>
             </Route>
         </Switch>
     </BrowserRouter>
