@@ -404,6 +404,8 @@ instruções;
 
 - Ao clickar em "Me surpreenda", a rota deve mudar para os detalhes de uma receita aleátoria vinda da API;
 
+- A rota deve ser `/explorar/comidas` ou `/explorar/bebidas`, dependendo de qual é a origem;
+
 ### Tela de explorar ingredientes
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
@@ -412,6 +414,8 @@ instruções;
 - Ao clickar no card do ingrediente, a rota deve mudar para tela principal de receitas, mas mostrando apenas as receitas que contem o ingrediente escolhido.
 
 - As receitas mostradas devem representar o tipo escolhido antes na tela de explorar: se é comida ou bebida.
+
+- A rota deve ser `/explorar/comidas/ingredientes` ou `/explorar/bebidas/ingredientes`
 
 ### Tela de explorar por local de origem/area
 

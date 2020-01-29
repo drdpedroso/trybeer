@@ -289,6 +289,14 @@ const FavoriteRecipes = () => {
     )
 }
 
+const ExploreIngredient = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+
 export default function App() {
     const [state, setState] = React.useState({})
   return (
