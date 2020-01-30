@@ -215,7 +215,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
 ### Header
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-   - Deve apresentar um icone para a tela de perfil e um para a busca (caso o protótipo peça).
+   - Deve apresentar um ícone para a tela de perfil e um para a busca (caso exista no protótipo).
    
    - Ao clickar no botão de perfil, a rota deve mudar para a tela de perfil.
    
@@ -223,7 +223,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
 ### Barra de busca - Header
 
-- A barra de busca deve aparecer quando o usuario clickar no icone de lupa no header. O mesmo serve para esconde-la.
+- A barra de busca deve aparecer quando a pessoa clickar no ícone de lupa no header. O mesmo serve para esconde-la.
 
 - A busca deve ocorrer 600 milisegundos após a última iteração com o input. (Pesquise por `debounce`)
 
@@ -233,7 +233,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
 
 - Caso mais de uma receita seja encontrada, mostrar as receitas em cards da mesma maneira que a tela principal de receitas.
 
-- Caso nenhuma receita seja encontrada, uma mensagem deve dizer isso para o usuario. 
+- Caso nenhuma receita seja encontrada, uma mensagem deve ser exibida. 
    
 ### Menu inferior
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
@@ -262,7 +262,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelo prefixo `meals-token` e `cocktails-token` (o token de teste é sempre "1")
    
-   - Após a submissão, o e-mail do usuário deve ser salvo em `localStorage` no formato `user: {email: email-do-usuario}`
+   - Após a submissão, o e-mail do usuário deve ser salvo em `localStorage` no formato `user: {email: email-do-usuário}`
 
 ### Tela principal de Receitas:
 
@@ -503,7 +503,7 @@ No `localStorage` do navegador:
   * Se não estiver, mude para a branch `master`
     * Exemplo: `git checkout master`
   * Agora, crie uma branch onde você vai guardar os `commits` do seu projeto
-    * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
+    * Você deve criar uma branch no seguinte formato: `nome-de-usuário-nome-do-projeto`
     * Exemplo: `git checkout -b joaozinho-movie-card-library`
 
 5. Adicione as mudanças ao _stage_ do Git e faça um `commit`

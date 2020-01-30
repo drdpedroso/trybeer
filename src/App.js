@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios'
 import {useHistory, useParams} from 'react-router-dom'
-// import logo from './trivia.png';
-// import './App.css';
 import debounce from 'lodash/debounce'
 import copy from 'clipboard-copy'
 
