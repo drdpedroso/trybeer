@@ -133,7 +133,7 @@ https://www.themealdb.com/images/ingredients/Lime.png
 
 Bem similar (inclusive mantida pela mesma entidade) a TheMealDB API, só que focado em bebidas.
 
-Os end-points tambem são bastante ricos, você pode [vê-los aqui](https://www.thecocktaildb.com/api.php)
+Os end-points também são bastante ricos, você pode [vê-los aqui](https://www.thecocktaildb.com/api.php)
 
 As respostas seguem a mesma estrutura, com algumas particularidade relativas as bebidas (como ser ou não alcoolica, por exemplo)
 
@@ -223,7 +223,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
 ### Barra de busca - Header
 
-- A barra de busca deve aparecer quando a pessoa clickar no ícone de lupa no header. O mesmo serve para esconde-la.
+- A barra de busca deve aparecer quando a pessoa clickar no ícone de lupa no header. O mesmo serve para escondê-la.
 
 - A busca deve ocorrer 600 milisegundos após a última iteração com o input. (Pesquise por `debounce`)
 
@@ -238,13 +238,13 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
 ### Menu inferior
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-- Deve apresentar 3 icones, um para comidas, outro para bebidas e outro para exploração.
+- Deve apresentar 3 ícones, um para comidas, um para bebidas e outro para exploração.
 
-- Ao clickar no icone de comidas, a pessoa deve ser redirecionada para uma lista de comidas.
+- Ao clickar no ícone de comidas, a pessoa deve ser redirecionada para uma lista de comidas.
 
-- Ao clickar no icone de bebidas, a pessoa deve ser redirecionada para uma lista de cocktails.
+- Ao clickar no ícone de bebidas, a pessoa deve ser redirecionada para uma lista de cocktails.
 
-- Ao clickar no icone de exploração, a rota deve mudar para a tela de exploração. 
+- Ao clickar no ícone de exploração, a rota deve mudar para a tela de exploração. 
 
 - Este menu deve estar oculto dependendo da tela do protótipo.
 
@@ -260,7 +260,7 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - Caso o formulário esteja inválido, o botão de submeter deve estar desativado. Caso contrário, deve estar ativado.
    
-   - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelo prefixo `meals-token` e `cocktails-token` (o token de teste é sempre "1")
+   - Após a submissão, 2 tokens devem ser salvos em `localStorage` identificados pelas chaves `meals-token` e `cocktails-token` (o token de teste é sempre "1")
    
    - Após a submissão, o e-mail do usuário deve ser salvo em `localStorage` no formato `user: {email: email-do-usuário}`
 
@@ -278,11 +278,11 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
    
    - No filtro de categorias deve existir a opção de filtrar por Todas as categorias.
    
-   - As receitas que serão carregadas dependem de qual icone a pessoa clickou: comidas acessa a API de comidas e bedidas acessa a API de bebidas.
+   - As receitas que serão carregadas dependem de qual ícone a pessoa clickou: comidas acessa a API de comidas e bedidas acessa a API de bebidas.
    
    - Se a API utilizada for a de comidas, a URl deve ser `/comidas`, caso seja bebidas `/bebidas`;
    
-   - O titulo da página mostrado vai depender tambem de qual icone a pessoa clickou; (Comidas ou Bebidas)
+   - O título da página mostrado vai depender também de qual ícone a pessoa clickou; (Comidas ou Bebidas)
    
    - Cada receita que voltar da API deve virar um card dentro de uma Grid.
    
@@ -313,15 +313,15 @@ instruções, um video do youtube "embedado" e recomendações.
 
 - Quando "Iniciar Receita" for clickado, a rota deve mudar para a tela de realização de receita.
 
-- Um botão de compartilhar e um de favoritar a receita devem estar disponiveis.
+- Um botão de compartilhar e um de favoritar a receita devem estar disponíveis.
 
 - Ao clickar no botão de compartilhar, o link da receita deve ser copiado para o clipboard e uma mensagem avisando que o link foi copiado deve aparecer.
 
-- Caso a receita ja esteja favoritada, o icone do coração deve vir preenchido.
+- Caso a receita ja esteja favoritada, o ícone do coração deve vir preenchido.
 
-- Caso a receita não esteja favoritada, o icone do coração deve vir despreenchido.
+- Caso a receita não esteja favoritada, o ícone do coração deve vir despreenchido.
   
-- Ao clickar no botão de favoritar, o icone do coração deve mudar de seu estado atual, caso esteja preenchido deve mudar para despreenchido e vice versa.
+- Ao clickar no botão de favoritar, o ícone do coração deve mudar de seu estado atual, caso esteja preenchido deve mudar para despreenchido e vice versa.
 
 - As receitas favoritas devem ser salvas em `localStorage` no formato: `favoriteRecipes: [{id, category, image}]`
 

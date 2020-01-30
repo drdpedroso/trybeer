@@ -24,11 +24,11 @@ describe('Main Recipes', () => {
         cy.wait(2000)
         hasTopBarItems()
         hasBottomNavigation()
-        // Array.from({length: 5}, (v, i) => i).forEach(e => {
-        //     cy.get(`[data-testid="${e}-card-img"]`)
-        //     cy.get(`[data-testid="${e}-card-category"]`)
-        //     cy.get(`[data-testid="${e}-card-name"]`)
-        // })
+        Array.from({length: 12}, (v, i) => i).forEach(e => {
+            cy.get(`[data-testid="${e}-card-img"]`)
+            cy.get(`[data-testid="${e}-card-category"]`)
+            cy.get(`[data-testid="${e}-card-name"]`)
+        })
         cy.get('[data-testid="All-category-filter"]').contains('All')
         cy.get('[data-testid="Beef-category-filter"]').contains('Beef')
         cy.get('[data-testid="Chicken-category-filter"]').contains('Chicken')
