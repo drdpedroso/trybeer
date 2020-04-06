@@ -71,6 +71,26 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
    - Se o usuário for do tipo `administrador`, a próxima rota deve ser a de **Pedidos**.
     
    - Se o usuário for do tipo `cliente`, a próxima rota deve ser a de **Produtos**.
+   
+   - Um botão de se registrar deve existir. Ao ser clickado, levar para a rota `/registrar`. 
+   
+### Tela de registro
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A tela deve mostrar um formulário com os seguintes campos:
+
+- `nome` - deve conter no minimo 12 letras, sem números ou caracteres especiais.
+
+- `email` - deve conter um email válido.
+ 
+- `senha` - composta por 6 números.
+
+- `quero vender` - sendo um checkbox.
+
+- Caso a opção `quero vender` esteja "checkada", o usuário deve ter um papel de ADMIN. Caso contrário, será um CLIENT.
+
+- O botão de submeter o formulário deve está desabilitado caso algum dos campos seja inválido. 
+
 
 ## Admin
 
@@ -85,7 +105,6 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
  
 - Ao clickar no item `Sair`, a rota deve mudar para `/login` e a pessoa deve ser deslogada. 
 
-
 ### Tela de pedidos:
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
@@ -95,7 +114,6 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - Ao clickar no card do pedido, levar para a rota ``pedido/:id``, onde o id é o id do pedido que o card faz referencia.
 
-  
 ### Tela de detalhes de pedido:
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
@@ -115,6 +133,36 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
 - Mostrar o `e-mail` e o `nome` do usuário.
+
+
+## Cliente
+
+### Menu superior
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- Mostrar o titulo correspondente a tela (vide protótipo).
+
+- Mostrar "hamburguer" que, quando clickado, deve mostrar o menu lateral (caso esteja oculto) e esconder (caso esteja aberto).
+
+### Menu lateral
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- Deve conter 3 items: `Produtos`, `Meus pedidos`, `Meu Perfil` e `Sair`
+
+- Ao clickar no item `Produtos`, a rota deve mudar para `/drodutos` e mostrar a tela de Produtos.
+
+- Ao clickar no item `Meus pedidos`, a rota deve mudar para `/meus-pedidos` e mostrar a tela de Meus Pedidos.
+
+- Ao clickar no item `Meu perfil`, a rota deve mudar para `/meu-perfil` e mostrar a tela de Meu Perfil.
+ 
+- Ao clickar no item `Sair`, a rota deve mudar para `/login` e a pessoa deve ser deslogada.
+
+### Tela de Produto
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- Nessa tela, os produtos devem ser organizados em cards. Esse cards  
+
+
    
 ### Implementações técnicas
 
@@ -133,6 +181,8 @@ No `localStorage` do navegador:
     role (podendo ser ADMIN ou CLIENT) 
 }
 ```
+
+## Admin
 
 ---
 
