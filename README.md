@@ -99,23 +99,27 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - Deve conter 3 items: `Pedidos`, `Perfil` e `Sair`
 
-- Ao clickar no item `Pedidos`, a rota deve mudar para `/pedidos` e mostrar a tela de Pedidos.
+- Ao clickar no item `Pedidos`, a rota deve mudar para `/admin/pedidos` e mostrar a tela de Pedidos.
 
-- Ao clickar no item `Perfil`, a rota deve mudar para `/perfil` e mostrar a tela de Perfil.
+- Ao clickar no item `Perfil`, a rota deve mudar para `/admin/perfil` e mostrar a tela de Perfil.
  
 - Ao clickar no item `Sair`, a rota deve mudar para `/login` e a pessoa deve ser deslogada. 
 
 ### Tela de pedidos:
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
+- A rota deve ser `/admin/pedidos`.
+
 - Essa tela deve mostrar todos os pedidos com status **Pendente**.
 
 - Os "cards" dos pedidos devem conter as informações: ``número do pedido, endereço para entrega e valor total``.
 
-- Ao clickar no card do pedido, levar para a rota ``pedido/:id``, onde o id é o id do pedido que o card faz referencia.
+- Ao clickar no card do pedido, levar para a rota ``/admin/pedido/:id``, onde o id é o id do pedido que o card faz referencia.
 
 ### Tela de detalhes de pedido:
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A rota deve ser `/admin/pedido/:id`.
 
 - No cabeçalho, mostrar o ``número do pedido`` e o `status` atual.
 
@@ -132,7 +136,9 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 ### Tela de perfil:
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-- Mostrar o `e-mail` e o `nome` do usuário.
+- A rota deve ser `/admin/perfil`.
+
+- Mostrar o `e-mail` e o `nome` do usuário. Não permitir edição.
 
 
 ## Cliente
@@ -149,7 +155,7 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - Deve conter 3 items: `Produtos`, `Meus pedidos`, `Meu Perfil` e `Sair`
 
-- Ao clickar no item `Produtos`, a rota deve mudar para `/drodutos` e mostrar a tela de Produtos.
+- Ao clickar no item `Produtos`, a rota deve mudar para `/produtos` e mostrar a tela de Produtos.
 
 - Ao clickar no item `Meus pedidos`, a rota deve mudar para `/meus-pedidos` e mostrar a tela de Meus Pedidos.
 
@@ -157,11 +163,78 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
  
 - Ao clickar no item `Sair`, a rota deve mudar para `/login` e a pessoa deve ser deslogada.
 
-### Tela de Produto
+### Tela de Produtos
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
-- Nessa tela, os produtos devem ser organizados em cards. Esse cards  
+- A rota deve ser `/products`.
 
+- Nessa tela, os produtos devem ser organizados em cards.
+
+- Os cards devem conter `foto, nome do produto, quantidade atual, um botão de adicionar e de remover`.
+
+- Ao clickar no botão `+`, a quantidade do produto deve aumentar em 1.
+
+- Ao clickar no botão `-`, a quantidade do produto deve diminuir em 1, limitado a 0.
+
+- Quando a quantidade for 0, o produto deve ser removido do carrinho.
+
+- Mostrar um botão de ``Ver carrinho`` com o `valor total` no texto.
+
+- Quando a quantidade mudar, o valor total no botão deve mudar.
+
+- Ao clickar no botão ``Ver carrinho``, mudar a rota para `/checkout`.
+
+### Tela de Meus pedidos
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A rota deve ser `/meus-pedidos`.
+
+- Essa tela deve contar uma lista de cards contendo informações do pedido: ``número do pedido, data e o valor total`` (apenas dia e mês para data).
+
+- Ao clickar no card, a rota deve mudar para os detalhes do pedido clickado: ``/pedido/:numero-do-pedido``, sendo `numero-do-pedido` o número daquele pedido.
+
+### Tela de Detalhes do pedido
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A rota deve ser ``/pedido/:numero-do-pedido``.
+
+- Mostrar o `número do pedido e a data de realização` (apenas dia e mês).
+
+- Mostrar uma lista com ``quantidade do produto -- nome do produto -- valor total do produto``. Sendo o valor total calculado por `quantidade * preço unitário`.
+
+- Abaixo da lista, mostrar o `valor total do pedido`, sendo calculado pela `soma de todos os valores totais por produto`.
+
+### Tela de perfil:
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A rota deve ser `/perfil`.
+
+- Mostrar campos de texto com `e-mail` e o `nome` do usuário. Permitir edição apenas do `nome`.
+
+- Disponibilizar um botão `Salvar`, que quando clickado deve alterar o nome do usuário (caso ele tenha editado).
+
+- Caso nenhuma edição ocorra, o botão deve ficar desabilitado.
+
+### Tela de Checkout 
+- Todos os elementos devem respeitar os atributos descritos no protótipo;
+
+- A rota deve ser ``/checkout``.
+
+- Mostrar o `número do pedido e a data de realização` (apenas dia e mês).
+
+- Mostrar uma lista com ``quantidade do produto -- nome do produto -- valor total do produto``. Sendo o valor total calculado por `quantidade * preço unitário`.
+
+- O campo de `quantidade` deve habilitar a edição da mesma. Caso a quantidade se altere, recalcular o `valor total do pedido`.
+
+- Abaixo da lista, mostrar o `valor total do pedido`, sendo calculado pela `soma de todos os valores totais por produto`.
+
+- Deve existir um formulário para a pessoal digitar a `rua` e o `número da casa` para entrega.
+
+- Exibir um botão de `Finalizar pedido`, que deve estar habilitado apenas se: o valor for maior que 0 e o endereço estiver preenchido.
+
+- Ao clickar em `Finalizar pedido`, a rota deve mudar para a `/produtos` (em caso de sucesso).
+
+- Uma mensagem de sucesso deve ser exibida caso a operação dê certo. Caso contrário, exibir uma mensagem de erro.
 
    
 ### Implementações técnicas
