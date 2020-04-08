@@ -168,6 +168,10 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - A rota deve ser `/products`.
 
+- Caso a pessoa atualize o browser, o carrinho deve ser mantido.
+
+- Caso a pessoa volte em menos de 12h (contando da ultima alteração nos items do checkout), o carrinho deve ser mantido.
+
 - Nessa tela, os produtos devem ser organizados em cards.
 
 - Os cards devem conter `foto, nome do produto, quantidade atual, um botão de adicionar e de remover`.
@@ -219,6 +223,10 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 - Todos os elementos devem respeitar os atributos descritos no protótipo;
 
 - A rota deve ser ``/checkout``.
+
+- Caso a pessoa atualize o browser, o carrinho deve ser mantido.
+
+- Caso a pessoa volte em menos de 12h (contando da ultima alteração nos items do checkout), o carrinho deve ser mantido.
 
 - Mostrar o `número do pedido e a data de realização` (apenas dia e mês).
 
