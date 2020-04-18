@@ -85,11 +85,14 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
  
 - `senha` - composta por 6 números.
 
-- `quero vender` - sendo um checkbox.
+- `quero vender` - sendo um checkbox opcional.
 
 - Caso a opção `quero vender` esteja "checkada", o usuário deve ter um papel de ADMIN. Caso contrário, será um CLIENT.
 
 - O botão de submeter o formulário deve está desabilitado caso algum dos campos seja inválido. 
+
+- Caso a opção `quero vender` esteja "checkada", ao clickar no botão `Cadastrar`, a rota deve mudar para `/admin/pedidos`.
+ Caso contrario, mudar a rota para `produtos`
 
 
 ## Admin
@@ -174,7 +177,9 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - Nessa tela, os produtos devem ser organizados em cards.
 
-- Os cards devem conter `foto, nome do produto, quantidade atual, um botão de adicionar e de remover`.
+- Os cards devem conter `foto, nome do produto, o preço unitário, quantidade atual, um botão de adicionar e de remover`.
+
+- O preço unitário deve seguir o padrão da moeda: ``R$ 00,00``.
 
 - Ao clickar no botão `+`, a quantidade do produto deve aumentar em 1.
 
@@ -249,8 +254,9 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de correção funcionem corretamente.
 
-O uso de `localStorage` é necessário para que as informações não se percam caso a pessoa atualize a página. 
-O correto é usar os valores para iniciar sua store ou seu context.
+- O Front-End deve estar na em ``localhost:3000`` e a API em ``localhost:3001``.
+
+- O uso de `localStorage` é necessário para que as informações não se percam caso a pessoa atualize a página. 
 
 No `localStorage` do navegador:
 * a chave `user` deve conter a seguinte estrutura:
@@ -263,7 +269,44 @@ No `localStorage` do navegador:
 }
 ```
 
-## Admin
+- Ao deslogar, remover completamente a chave `user` do `localStorage`.
+
+- Os endpoints devem permitir o acesso com um token de teste: ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c```
+
+- Criar um ``produto de teste`` que deve ficar na primeira posição dos cards (com test-id começando com o indice 0) com as especificações:
+
+```javascript
+{
+    name: 'Cerveja Skol Lata 250ml',
+    price: 2.20,
+    image: 'https://res.cloudinary.com/drdpedroso/image/upload/c_scale,w_600/v1587242866/132_Cerveja_Skol_Pilsen_Lata_350ml_zu1xth.jpg'
+}
+``` 
+
+
+- Criar um `login de teste para ADMIN` com as seguintes especificações: 
+
+```javascript
+{
+    name: 'Admin Trybe',
+    email: 'admin@trybe.com',
+    password: '123456'
+}
+```
+
+- Criar um `login de teste para CLIENT` com as seguintes especificações: 
+
+```javascript
+{
+    name: 'Client Trybe',
+    email: 'client@trybe.com',
+    password: '123456'
+}
+```
+
+#### Endpoints
+
+- para o registro, usar ``POST /register``. 
 
 ---
 
