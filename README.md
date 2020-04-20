@@ -313,6 +313,7 @@ No `localStorage` do navegador:
 - para o registro, usar ``POST /register``. 
 - para o listar os produtos do cliente, usar ``GET /products``. 
 - para finalizar o pedido, usar ``POST /finish-order``. 
+- para carregar meus pedidos, usar ``GET /my-orders``. 
 
 ---
 

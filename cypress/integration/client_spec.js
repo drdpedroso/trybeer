@@ -4,10 +4,17 @@ describe('Client', () => {
         cy.visit('http://localhost:3000/login')
     })
 
+    const formatDate = (data) => {
+        const month = (`00${data.getMonth() + 1}`).slice(-2);
+        const day = (`00${data.getDate()}`).slice(-2);
+
+        return `${day}/${month}`;
+    }
     it('should complete an order', () => {
         cy.server()
         cy.route('products').as('productsAPI')
         cy.route('finish-order').as('finishOrder')
+        cy.route('my-orders').as('myOrders')
         cy.viewport('iphone-6')
         // login
         cy.get('[data-testid="login-submit-btn"]').should('be.disabled')
@@ -48,10 +55,15 @@ describe('Client', () => {
         cy.get('[data-testid="checkout-house-number-input"]').type('32')
         cy.get('[data-testid="checkout-finish-btn"]').click()
         cy.wait('@finishOrder')
-
         // confirm in my orders
         cy.visit('http://localhost:3000/meus-pedidos')
-        
+        cy.wait('@myOrders')
+        cy.get('[data-testid="0-order-number"]').contains('Pedido')
+        cy.get('[data-testid="0-order-total-value"]').contains('4,40')
+        const expectedDate = formatDate(new Date())
+        cy.get('[data-testid="0-order-date"]').contains(expectedDate)
+
+
     })
 
     it('should have all elements in desktop', () => {
