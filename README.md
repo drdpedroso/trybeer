@@ -128,6 +128,8 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 
 - Mostrar uma listagem com os produtos do pedido, onde cada linha deve conter `quantidade, o nome do produto e qual o preço total do produto`.
 
+- A listagem deve sempre mostrar o pedido mais antigo com status pendente primeiro.
+
 - O `preço total do produto` é calculado usando `quantidade * preço unitário`.
 
 - Mostrar também o `valor total do pedido`, calculado com a `soma de todos os preços totais dos produtos`.
@@ -199,6 +201,8 @@ O intuito com esse app é que uma pessoa possa pedir uma cerveja no aplicativo e
 - A rota deve ser `/meus-pedidos`.
 
 - Essa tela deve contar uma lista de cards contendo informações do pedido: ``número do pedido, data e o valor total`` (apenas dia e mês para data).
+
+- A listagem deve sempre mostrar o pedido mais novo primeiro. 
 
 - Ao clickar no card, a rota deve mudar para os detalhes do pedido clickado: ``/pedido/:numero-do-pedido``, sendo `numero-do-pedido` o número daquele pedido.
 
@@ -307,6 +311,8 @@ No `localStorage` do navegador:
 #### Endpoints
 
 - para o registro, usar ``POST /register``. 
+- para o listar os produtos do cliente, usar ``GET /products``. 
+- para finalizar o pedido, usar ``POST /finish-order``. 
 
 ---
 
